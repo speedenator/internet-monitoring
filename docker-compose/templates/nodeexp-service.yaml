@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -c --volumes hostPath
+    kompose.version: 1.22.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: nodeexp
+  name: nodeexp
+spec:
+  ports:
+    - name: "9100"
+      port: 9100
+      targetPort: 9100
+  selector:
+    io.kompose.service: nodeexp
+status:
+  loadBalancer: {}

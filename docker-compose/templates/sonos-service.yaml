@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -c --volumes hostPath
+    kompose.version: 1.22.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: sonos
+  name: sonos
+spec:
+  ports:
+    - name: "1915"
+      port: 1915
+      targetPort: 1915
+  selector:
+    io.kompose.service: sonos
+status:
+  loadBalancer: {}

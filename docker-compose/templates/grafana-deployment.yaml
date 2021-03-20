@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -c --volumes hostPath
+    kompose.version: 1.22.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: grafana
+  name: grafana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: grafana
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -c --volumes hostPath
+        kompose.version: 1.22.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/back-tier: "true"
+        io.kompose.network/front-tier: "true"
+        io.kompose.service: grafana
+    spec:
+      containers:
+        - env:
+            - name: GF_INSTALL_PLUGINS
+              valueFrom:
+                configMapKeyRef:
+                  key: GF_INSTALL_PLUGINS
+                  name: grafana-config-monitoring
+            - name: GF_SECURITY_ADMIN_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: GF_SECURITY_ADMIN_PASSWORD
+                  name: grafana-config-monitoring
+            - name: GF_USERS_ALLOW_SIGN_UP
+              valueFrom:
+                configMapKeyRef:
+                  key: GF_USERS_ALLOW_SIGN_UP
+                  name: grafana-config-monitoring
+          image: grafana/grafana
+          name: grafana
+          ports:
+            - containerPort: 3000
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/grafana
+              name: grafana-data
+            - mountPath: /etc/grafana/provisioning/
+              name: grafana-hostpath1
+      restartPolicy: Always
+      volumes:
+        - hostPath:
+            path: {{ required "pwd is required, use --set pwd=`pwd` in command line" .Values.pwd }}
+          name: grafana-data
+        - hostPath:
+            path: {{ required "pwd is required, use --set pwd=`pwd` in command line" .Values.pwd }}/grafana/provisioning
+          name: grafana-hostpath1
+status: {}
