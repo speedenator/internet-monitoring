@@ -56,7 +56,7 @@ spec:
       restartPolicy: Always
       volumes:
         - hostPath:
-            path: {{ required "pwd is required, use --set pwd=`pwd` in command line" .Values.pwd }}
+            path: {{ required "pwd is required, use --set pwd=`pwd` in command line" .Values.pwd }}/grafana_data
           name: grafana-data
         - hostPath:
             path: {{ required "pwd is required, use --set pwd=`pwd` in command line" .Values.pwd }}/grafana/provisioning

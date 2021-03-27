@@ -47,6 +47,6 @@ spec:
             path: {{ required "pwd is required, use --set pwd=`pwd` in command line" .Values.pwd }}/prometheus
           name: prometheus-hostpath0
         - hostPath:
-            path: {{ required "pwd is required, use --set pwd=`pwd` in command line" .Values.pwd }}
+            path: {{ required "pwd is required, use --set pwd=`pwd` in command line" .Values.pwd }}/prometheus_data
           name: prometheus-data
 status: {}

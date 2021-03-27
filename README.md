@@ -10,7 +10,7 @@ Before we get started installing the Prometheus stack. Ensure you install the la
 If on Mac run this:
 
 ```
-git clone https://github.com/maxandersen/internet-monitoring && cd internet-monitoring/prometheus && docker-compose up && open http://localhost:3030/d/o9mIe_Aik/internet-connection
+git clone https://github.com/maxandersen/internet-monitoring && cd internet-monitoring/prometheus && docker-compose up && open http://localhost:8031/d/o9mIe_Aik/internet-connection
 ```
 
 otherwise:
@@ -21,7 +21,7 @@ cd internet-monitoring/prometheus
 docker-compose up
 ```
 
-Goto [http://localhost:3030/d/o9mIe_Aik/internet-connection](http://localhost:3030/d/o9mIe_Aik/internet-connection) (change `localhost` to your docker host ip/name).
+Goto [http://localhost:8031/d/o9mIe_Aik/internet-connection](http://localhost:8031/d/o9mIe_Aik/internet-connection) (change `localhost` to your docker host ip/name).
 
 ## Configuration
 To change what hosts you ping you change the `targets` section in [/prometheus/pinghosts.yaml](./prometheus/pinghosts.yaml) file.
@@ -35,14 +35,14 @@ Once configurations are done let's start it up. From the /prometheus project dir
 
 That's it. docker-compose builds the entire Grafana and Prometheus stack automagically. 
 
-The Grafana Dashboard is now accessible via: `http://<Host IP Address>:3030` for example http://localhost:3030
+The Grafana Dashboard is now accessible via: `http://<Host IP Address>:8031` for example http://localhost:8031
 
 username - admin
 password - wonka (Password is stored in the `config.monitoring` env file)
 
 The DataSource and Dashboard for Grafana are automatically provisioned. 
 
-If all works it should be available at http://localhost:3030/d/o9mIe_Aik/internet-connection - if no data shows up try change the timeduration to something smaller.
+If all works it should be available at http://localhost:8031/d/o9mIe_Aik/internet-connection - if no data shows up try change the timeduration to something smaller.
 
 <center><img src="images/dashboard.png" width="4600" heighth="500"></center>
 
@@ -62,5 +62,5 @@ http://localhost:9696/metrics speedtest exporter endpoint. Does take ~30 seconds
 
 Thanks to @vegasbrianc work on making a [super easy docker](https://github.com/vegasbrianc/github-monitoring) stack for running prometheus and grafana.
 
-I also want to disclaim that Prometheus aren't really (currently) intended for this kind of blackbox/external monitoring and this setup is not in anyway secured. Thus only use this for inspiration and do not blame me if someone hacks this and figure out what your real internet sped is :)
+I also want to disclaim that Prometheus aren't really (currently) intended for this kind of blackbox/external monitoring and this setup is not in anyway secured. Thus only use this for inspiration and do not blame me if someone hacks this and figure out what your real internet speed is :)
 
