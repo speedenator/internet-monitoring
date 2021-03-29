@@ -3,22 +3,54 @@
 Here's a quick start to stand-up a Docker [Prometheus](http://prometheus.io/) stack containing Prometheus, Grafana with  [blackbox-exporter](https://github.com/prometheus/blackbox_exporter) and [speedtest-exporter](https://github.com/stefanwalther/speedtest-exporter) to collect and graph home network connections and speed.
 
 ## Pre-requisites
-Before we get started installing the Prometheus stack. Ensure you install the latest version of docker and [docker-compose](https://docs.docker.com/compose/install/) on your Docker host machine. This has been tested with Docker for Mac and Synology and it works.
+Before we get started installing the Prometheus stack. Ensure you
+install the latest version of docker and
+[docker-compose](https://docs.docker.com/compose/install/) on your
+Docker host machine. This has been tested with Docker for Mac and
+Docker for Windows.
 
 # Quick Start
 
-If on Mac run this:
+## Docker and Kubernetes
+
+Docker: install docker. Google it.
+Install helm. OSX? ```brew install helm```. Windows? Google it (you
+likely also need to install WSL).
+
+Docker also has a dashboard that can be installed. The included
+Makefile will do the following commands:
 
 ```
-git clone https://github.com/maxandersen/internet-monitoring && cd internet-monitoring/prometheus && docker-compose up && open http://localhost:8031/d/o9mIe_Aik/internet-connection
+% make dashboard
 ```
 
-otherwise:
+To access it, use:
 
 ```
-git clone https://github.com/maxandersen/internet-monitoring
-cd internet-monitoring/prometheus
-docker-compose up
+% make proxy &
+```
+and to get the token to log in:
+
+```
+% make token
+```
+
+## Helm install
+
+```
+sh helm-install.sh
+```
+
+## Helm reload
+
+```
+sh helm-reload.sh
+```
+
+## Helm uninstall
+
+```
+sh helm-uninstall.sh
 ```
 
 Goto [http://localhost:8031/d/o9mIe_Aik/internet-connection](http://localhost:8031/d/o9mIe_Aik/internet-connection) (change `localhost` to your docker host ip/name).
@@ -46,7 +78,8 @@ If all works it should be available at http://localhost:8031/d/o9mIe_Aik/interne
 
 <center><img src="images/dashboard.png" width="4600" heighth="500"></center>
 
-## Interesting urls
+## Interesting urls (note: currently not working as these aren't
+exposed via helm yet)
 
 Note: replace `localhost` with your docker host ip/name if not running this locally.
 
@@ -62,5 +95,5 @@ http://localhost:9696/metrics speedtest exporter endpoint. Does take ~30 seconds
 
 Thanks to @vegasbrianc work on making a [super easy docker](https://github.com/vegasbrianc/github-monitoring) stack for running prometheus and grafana.
 
-I also want to disclaim that Prometheus aren't really (currently) intended for this kind of blackbox/external monitoring and this setup is not in anyway secured. Thus only use this for inspiration and do not blame me if someone hacks this and figure out what your real internet speed is :)
+I also want to disclaim that Prometheus aren't really (currently) intended for this kind of blackbox/external monitoring and this setup is not in anyway secured. Thus only use this for inspiration and do not blame me if someone hacks this and figure out what your real internet spedd is 
 
