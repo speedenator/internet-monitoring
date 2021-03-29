@@ -63,9 +63,13 @@ For speedtest the only relevant configuration is how often you want the check to
 
 Once configurations are done let's start it up. From the /prometheus project directory run the following command:
 
-    $ docker-compose up -d
+    $ helm-install.sh
 
-That's it. docker-compose builds the entire Grafana and Prometheus stack automagically. 
+That's it. Helm builds the entire Grafana and Prometheus stack
+automagically. Note if you don't want to use helm, you can use
+docker-compose, ala
+
+	$ docker-compose up -d
 
 The Grafana Dashboard is now accessible via: `http://<Host IP Address>:8031` for example http://localhost:8031
 
