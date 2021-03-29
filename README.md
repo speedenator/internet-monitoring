@@ -82,8 +82,8 @@ If all works it should be available at http://localhost:8031/d/o9mIe_Aik/interne
 
 <center><img src="images/dashboard.png" width="4600" heighth="500"></center>
 
-## Interesting urls (note: currently not working as these aren't
-exposed via helm yet)
+## Interesting urls
+(note: currently not working as these aren't exposed via helm yet)
 
 Note: replace `localhost` with your docker host ip/name if not running this locally.
 
