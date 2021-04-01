@@ -93,14 +93,14 @@ dashboard-token: dashboard-token-$(STACK)
 dashboard-token-$(STACK):
 	@echo
 	@echo "Please use the following token in the Web UI:"
-	@echo "http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy"
+	@echo "http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy"
 	@echo "(automatically copied to clipboard if on osx!)"
 	@echo ""
 	@echo "Remember to start the proxy via: kubectl proxy"
 	@echo ""
-	$(KUBECTL) -n kube-system describe secret $$($(KUBECTL) -n kube-system get secret | grep eks-admin | awk '{print $$1}') | grep token: | awk '{print $$2}'
+	$(KUBECTL) -n kubernetes-dashboard describe secret $$($(KUBECTL) -n kubernetes-dashboard get secret | grep eks-admin | awk '{print $$1}') | grep token: | awk '{print $$2}'
 # for osx, automatically put it in the buffer. 
-	@$(KUBECTL) -n kube-system describe secret $$($(KUBECTL) -n kube-system get secret | grep eks-admin | awk '{print $$1}') | grep token: | awk '{print $$2}' | $(PBCOPY)
+	@$(KUBECTL) -n kubernetes-dashboard describe secret $$($(KUBECTL) -n kubernetes-dashboard get secret | grep eks-admin | awk '{print $$1}') | grep token: | awk '{print $$2}' | $(PBCOPY)
 
 dashboard-all: dashboard-$(STACK)
 
