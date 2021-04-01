@@ -100,7 +100,7 @@ dashboard-token-$(STACK):
 	@echo ""
 	$(KUBECTL) -n kube-system describe secret $$($(KUBECTL) -n kube-system get secret | grep eks-admin | awk '{print $$1}') | grep token: | awk '{print $$2}'
 # for osx, automatically put it in the buffer. 
-	@$(KUBECTL) -n kube-system describe secret $$($(KUBECTL) -n kube-system get secret | grep eks-admin | awk '{print $$1}') | grep token: | awk '{print $$2}' | $PBCOPY
+	@$(KUBECTL) -n kube-system describe secret $$($(KUBECTL) -n kube-system get secret | grep eks-admin | awk '{print $$1}') | grep token: | awk '{print $$2}' | $(PBCOPY)
 
 dashboard-all: dashboard-$(STACK)
 
