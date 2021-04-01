@@ -79,7 +79,7 @@ dashboard-services-$(STACK): $(DEPLOYS)/$(STACK)/dashboard-services-$(STACK).pro
 dashboard: $(DEPLOYS)/$(STACK)/dashboard-services-$(STACK).provisioned
 
 $(DEPLOYS)/$(STACK):
-	mkdir -p $(DEPLOYS)/$(STACK):
+	mkdir -p $(DEPLOYS)/$(STACK)
 
 $(DEPLOYS)/$(STACK)/dashboard-services-$(STACK).provisioned: $(DEPLOYS)/$(STACK)
 # main dashboard
