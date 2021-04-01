@@ -34,6 +34,13 @@ and to get the token to log in:
 ```
 % make token
 ```
+(token will be automatically copied to the Clipboard on OSX... edit
+the Makefile and change 'pbcopy' to 'clip' for Windows.)
+
+To get to the dashboard, go here:
+```
+http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/overview?namespace=default
+```
 
 ## Helm install
 
